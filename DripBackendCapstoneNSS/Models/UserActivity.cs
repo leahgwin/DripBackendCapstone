@@ -16,6 +16,7 @@ namespace dripCapstone.Models
         public DateTime Date { get; set; }
 
         [Required]
+        [Display(Name = "How many times?")]
         public int Count { get; set; }
     }
 }
