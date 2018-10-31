@@ -17,5 +17,7 @@ namespace DripBackendCapstoneNSS.Models
         public DbSet<dripCapstone.Models.User> User { get; set; }
 
         public DbSet<dripCapstone.Models.UserActivity> UserActivity { get; set; }
+
+        public DbSet<dripCapstone.Models.Activity> Activity { get; set; }
     }
 }
