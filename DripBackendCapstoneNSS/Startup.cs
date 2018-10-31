@@ -43,7 +43,7 @@ namespace DripBackendCapstoneNSS
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<DripBackendCapstoneNSSContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DripBackendCapstoneNSSContext")));
         }
 
