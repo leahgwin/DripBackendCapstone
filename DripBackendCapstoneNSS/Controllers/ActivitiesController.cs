@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DripBackendCapstoneNSS.Data;
-using dripCapstone.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using DripBackendCapstoneNSS.Models;
 
 namespace DripBackendCapstoneNSS.Controllers
 {
