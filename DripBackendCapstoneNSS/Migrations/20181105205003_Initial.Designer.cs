@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DripBackendCapstoneNSS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181031194337_Initial")]
+    [Migration("20181105205003_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,23 +35,83 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.HasKey("ActivityId");
 
                     b.ToTable("Activity");
+
+                    b.HasData(
+                        new { ActivityId = 1, Liters = 10, Name = "Flush" },
+                        new { ActivityId = 2, Liters = 150, Name = "Bath" },
+                        new { ActivityId = 3, Liters = 55, Name = "Five Minute Shower" },
+                        new { ActivityId = 4, Liters = 1, Name = "Sponge Bath" },
+                        new { ActivityId = 5, Liters = 1, Name = "Brush Teeth" },
+                        new { ActivityId = 6, Liters = 10, Name = "Wash Dishes By Hand" },
+                        new { ActivityId = 7, Liters = 30, Name = "Run Dishwasher" },
+                        new { ActivityId = 8, Liters = 75, Name = "Washing Machine Load" },
+                        new { ActivityId = 9, Liters = 1, Name = "Cooking" },
+                        new { ActivityId = 10, Liters = 150, Name = "Bath" },
+                        new { ActivityId = 11, Liters = 1, Name = "Pet Water Bowl" },
+                        new { ActivityId = 12, Liters = 1, Name = "Wash Hands or Face" }
+                    );
                 });
 
             modelBuilder.Entity("DripBackendCapstoneNSS.Models.User", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("Neighborhood")
                         .IsRequired();
 
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<int>("UserId");
+
                     b.Property<string>("UserName")
-                        .IsRequired();
+                        .HasMaxLength(256);
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.HasAlternateKey("UserId");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new { Id = "388c803e-2dd9-4188-8a59-a89455022e8b", AccessFailedCount = 0, ConcurrencyStamp = "f59976cd-70c9-4f58-bd07-bba909676d51", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, Neighborhood = "Camps Bay", NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEDvkeVBVI6g6CE+x0KkHm8M+AxusP0eDbyXh7lJ59B3rMR1VFCM3T4oeS4APHRa9uw==", PhoneNumberConfirmed = false, SecurityStamp = "e6d4c6f5-1843-445a-b518-953078cbbedc", TwoFactorEnabled = false, UserId = 0, UserName = "admin" }
+                    );
                 });
 
             modelBuilder.Entity("DripBackendCapstoneNSS.Models.UserActivity", b =>
@@ -60,13 +120,27 @@ namespace DripBackendCapstoneNSS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ActivityId");
+
                     b.Property<int>("Count");
 
                     b.Property<DateTime>("Date");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("UserActivityId");
 
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("UserActivity");
+
+                    b.HasData(
+                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 5, 14, 50, 1, 826, DateTimeKind.Local), UserId = "388c803e-2dd9-4188-8a59-a89455022e8b" },
+                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 5, 14, 50, 1, 835, DateTimeKind.Local), UserId = "388c803e-2dd9-4188-8a59-a89455022e8b" },
+                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 5, 14, 50, 1, 835, DateTimeKind.Local), UserId = "388c803e-2dd9-4188-8a59-a89455022e8b" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -111,57 +185,6 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -234,6 +257,18 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("DripBackendCapstoneNSS.Models.UserActivity", b =>
+                {
+                    b.HasOne("DripBackendCapstoneNSS.Models.Activity", "Activity")
+                        .WithMany("UserActivities")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DripBackendCapstoneNSS.Models.User", "User")
+                        .WithMany("UserActivities")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -244,7 +279,7 @@ namespace DripBackendCapstoneNSS.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("DripBackendCapstoneNSS.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -252,7 +287,7 @@ namespace DripBackendCapstoneNSS.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("DripBackendCapstoneNSS.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -265,7 +300,7 @@ namespace DripBackendCapstoneNSS.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("DripBackendCapstoneNSS.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -273,7 +308,7 @@ namespace DripBackendCapstoneNSS.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("DripBackendCapstoneNSS.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

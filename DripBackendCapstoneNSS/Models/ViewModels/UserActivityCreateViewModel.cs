@@ -11,8 +11,7 @@ namespace DripBackendCapstoneNSS.Models.ViewModels
     {
             public List<SelectListItem> Activities { get; set; }
             public SelectList ActivitiesList { get; set; }
-        //I think this is how I would get the count for it?
-            public int Count { get; set; }
+        //have new property for userActivity (userAcvitivt.count)
 
 
         //this is the dropdown for selecting which activity you want to create

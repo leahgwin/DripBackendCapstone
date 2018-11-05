@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DripBackendCapstoneNSS.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using DripBackendCapstoneNSS.Models;
 
 namespace DripBackendCapstoneNSS.Controllers
@@ -16,22 +14,14 @@ namespace DripBackendCapstoneNSS.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        private readonly UserManager<User> _userManager;
-
-        public ActivitiesController(ApplicationDbContext context, UserManager<User> userManager)
+        public ActivitiesController(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
-
         // GET: Activities
-        [HttpGet]
-        [AutoValidateAntiforgeryToken]
-        [Authorize]
         public async Task<IActionResult> Index()
         {
-
             return View(await _context.Activity.ToListAsync());
         }
 

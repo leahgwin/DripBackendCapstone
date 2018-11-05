@@ -147,11 +147,3 @@ namespace DripBackendCapstoneNSS.Data
         }
     }
 }
-
-
-
-    //ask jisie about:
-    //1) date dataType in UserActivity (and other models)
-    //2) I think I need a new migration now that I've added this seeding
-    //3) on models: see icollection or Activity Activity option for FK?
-    //4) see createView for question about count?
