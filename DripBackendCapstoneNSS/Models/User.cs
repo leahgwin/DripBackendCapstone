@@ -14,10 +14,10 @@ namespace DripBackendCapstoneNSS.Models
 
         }
 
-        //dont think I need ID or username because that is built into identity?
+        //dont think I need username because that is built into identity? Maybe I need Id though??
 
-        //[Key]
-        //public int UserId { get; set; }
+        [Key]
+        public int UserId { get; set; }
 
        // [Required]
         //[Display(Name = "Username")]
