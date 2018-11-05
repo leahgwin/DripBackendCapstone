@@ -29,7 +29,9 @@ namespace DripBackendCapstoneNSS.Data
             {
                 UserName = "admin",
                 NormalizedUserName = "ADMIN",
-                //do I need this here?
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
+                EmailConfirmed = true,
                 Neighborhood = "Camps Bay",
                 LockoutEnabled = false,
                 SecurityStamp = Guid.NewGuid().ToString("D")
