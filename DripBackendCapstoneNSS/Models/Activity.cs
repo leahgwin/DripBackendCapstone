@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace dripCapstone.Models
+namespace DripBackendCapstoneNSS.Models
 {
     public class Activity
     {
@@ -17,5 +17,8 @@ namespace dripCapstone.Models
 
         [Required]
         public int Liters { get; set; }
+
+        //Needs icollection of userActivity bc of one to many relationship
+        public virtual ICollection<UserActivity> UserActivities { get; set; }
     }
 }

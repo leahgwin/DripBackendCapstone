@@ -1,4 +1,4 @@
-﻿@model dripCapstone.Models.UserActivity
+﻿@model DripBackendCapstoneNSS.Models.UserActivity
 
 @{
     ViewData["Title"] = "Delete";
@@ -22,6 +22,18 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Count)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Activity.Name)
         </dd>
     </dl>
     
