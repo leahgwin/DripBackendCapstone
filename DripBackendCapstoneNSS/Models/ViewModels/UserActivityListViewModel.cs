@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using DripBackendCapstoneNSS.Data;
@@ -7,29 +8,14 @@ using DripBackendCapstoneNSS.Models;
 
 namespace DripBackendCapstoneNSS.Models.ViewModels
 {
-    public class ActivityViewModel
+    public class UserActivityListViewModel
     {
-    }
-}
+        public UserActivity Activity { get; set; }
+        public IEnumerable<UserActivity> UserActivities { get; set; }
 
-
-
-
-
-
-namespace BitchAbout.Models.ViewModels
-{
-    public class RantListViewModel
-    {
-        public Rant Rant { get; set; }
-        public IEnumerable<Rant> Rants { get; set; }
-
-        public RantListViewModel(ApplicationDbContext context, ApplicationUser User)
+        public UserActivityListViewModel(ApplicationDbContext context, User User)
         {
-            Rants = context.Rant.Where(u => u.ApplicationUserId == User.Id);
-
-
+            UserActivities = context.UserActivity.Where(u => u.UserId == User.Id);
         }
     }
-
 }
