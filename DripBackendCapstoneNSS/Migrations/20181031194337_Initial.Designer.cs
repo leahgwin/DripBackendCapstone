@@ -21,7 +21,7 @@ namespace DripBackendCapstoneNSS.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("dripCapstone.Models.Activity", b =>
+            modelBuilder.Entity("DripBackendCapstoneNSS.Models.Activity", b =>
                 {
                     b.Property<int>("ActivityId")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,7 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("Activity");
                 });
 
-            modelBuilder.Entity("dripCapstone.Models.User", b =>
+            modelBuilder.Entity("DripBackendCapstoneNSS.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("dripCapstone.Models.UserActivity", b =>
+            modelBuilder.Entity("DripBackendCapstoneNSS.Models.UserActivity", b =>
                 {
                     b.Property<int>("UserActivityId")
                         .ValueGeneratedOnAdd()
