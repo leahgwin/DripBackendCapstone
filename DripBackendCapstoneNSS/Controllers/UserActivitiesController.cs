@@ -7,17 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DripBackendCapstoneNSS.Data;
 using DripBackendCapstoneNSS.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace DripBackendCapstoneNSS.Controllers
 {
     public class UserActivitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        //need all of this for identity user
+        public UserManager<User> _userManager;
 
-        public UserActivitiesController(ApplicationDbContext context)
+        public UserActivitiesController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: UserActivities
         public async Task<IActionResult> Index()
