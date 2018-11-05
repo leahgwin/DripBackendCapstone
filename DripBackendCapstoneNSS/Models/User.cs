@@ -27,5 +27,8 @@ namespace DripBackendCapstoneNSS.Models
         [Display(Name = "Neighborhood")]
         public string Neighborhood { get; set; }
 
+        //Needs icollection of userActivity bc of one to many relationship
+        public virtual ICollection<UserActivity> UserActivities { get; set; }
+
     }
 }

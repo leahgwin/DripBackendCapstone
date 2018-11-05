@@ -21,15 +21,12 @@ namespace DripBackendCapstoneNSS.Models
         [Display(Name = "How many times?")]
         public int Count { get; set; }
 
-        [Required]
         public User User { get; set; }
 
         public string UserId { get; set; }
 
-        //do I use an icollection or just Activity Activity?
-        public ICollection<Activity> Activities { get; set; }
+        public Activity Activity { get; set; }
 
         public int ActivityId { get; set; }
-
     }
 }
