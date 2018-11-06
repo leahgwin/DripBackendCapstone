@@ -16,10 +16,7 @@
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Count)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
+                @Html.DisplayNameFor(model => model.Activity.Liters)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Activity)
@@ -34,10 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Count)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
+                @Html.DisplayFor(modelItem => item.Activity.Liters)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Activity.Name)
