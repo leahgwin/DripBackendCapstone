@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using DripBackendCapstoneNSS.Data;
 using DripBackendCapstoneNSS.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using DripBackendCapstoneNSS.Models.ViewModels;
 
 namespace DripBackendCapstoneNSS.Controllers
 {
@@ -26,6 +29,24 @@ namespace DripBackendCapstoneNSS.Controllers
         }
 
         private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
+        //Purpose: Load Dropdown for activity Create
+        //private async Task<SelectList> ActivityList(int? selected)
+        //{
+            //using (IDbConnection conn = Connection)
+            //{
+                // Get all activity data
+                //List<Activity> activities = (await conn.QueryAsync<Activity>("SELECT DepartmentId, DepartmentName FROM Department")).ToList();
+
+                // Add a prompting activity for dropdown
+               // activities.Insert(0, new Activity() { ActivityId = 0, ActivityName = "Select water consumption..." });
+
+                // Generate SelectList from activity
+               // var selectList = new SelectList(activities, "ActivityId", "ActivityName", selected);
+               // return selectList;
+           // }
+       // }
+
 
 
         // GET: UserActivities
@@ -72,6 +93,9 @@ namespace DripBackendCapstoneNSS.Controllers
         {
             if (ModelState.IsValid)
             {
+                //get current user and set FK for user on user activity to their ID
+                User user = await GetCurrentUserAsync();
+
                 _context.Add(userActivity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
