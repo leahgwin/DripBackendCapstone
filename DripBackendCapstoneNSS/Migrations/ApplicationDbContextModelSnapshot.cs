@@ -101,7 +101,7 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "093a0f62-ab71-4939-82fc-57c9074a92ac", AccessFailedCount = 0, ConcurrencyStamp = "915683cf-648a-4273-8470-20bfabbed52a", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEOPGXH3nbNHzYtZp4LzjhwRu270aM4eza5AZY/xZy2cwKA4Pv3j03HPQ5YEL8JgTVA==", PhoneNumberConfirmed = false, SecurityStamp = "79bf2f35-23cd-4bde-bcea-5ff1ac33623b", TwoFactorEnabled = false, UserName = "admin" }
+                        new { Id = "85e9f168-681f-4c2a-b50c-05ab83338afe", AccessFailedCount = 0, ConcurrencyStamp = "33c61d04-214c-4a37-b427-2c4737d490b0", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEANhv8PfN3dJQir9vcvib4BNCATkJfLLywwT6geTsVzo69StqY26xQ4ujA5wYpRIoA==", PhoneNumberConfirmed = false, SecurityStamp = "6b2243d5-04b0-49f1-9cc3-09cb9aa17b69", TwoFactorEnabled = false, UserName = "admin" }
                     );
                 });
 
@@ -128,9 +128,9 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("UserActivity");
 
                     b.HasData(
-                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 7, 14, 54, 7, 947, DateTimeKind.Local), Id = "093a0f62-ab71-4939-82fc-57c9074a92ac" },
-                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 7, 14, 54, 7, 950, DateTimeKind.Local), Id = "093a0f62-ab71-4939-82fc-57c9074a92ac" },
-                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 7, 14, 54, 7, 950, DateTimeKind.Local), Id = "093a0f62-ab71-4939-82fc-57c9074a92ac" }
+                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 7, 16, 8, 21, 623, DateTimeKind.Local), Id = "85e9f168-681f-4c2a-b50c-05ab83338afe" },
+                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 7, 16, 8, 21, 627, DateTimeKind.Local), Id = "85e9f168-681f-4c2a-b50c-05ab83338afe" },
+                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 7, 16, 8, 21, 627, DateTimeKind.Local), Id = "85e9f168-681f-4c2a-b50c-05ab83338afe" }
                     );
                 });
 

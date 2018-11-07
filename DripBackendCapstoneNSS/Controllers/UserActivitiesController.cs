@@ -31,26 +31,9 @@ namespace DripBackendCapstoneNSS.Controllers
 
         private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-        //Purpose: Load Dropdown for activity Create
-        //private async Task<SelectList> ActivityList(int? selected)
-        //{
-            //using (IDbConnection conn = Connection)
-            //{
-                // Get all activity data
-                //List<Activity> activities = (await conn.QueryAsync<Activity>("SELECT DepartmentId, DepartmentName FROM Department")).ToList();
-
-                // Add a prompting activity for dropdown
-               // activities.Insert(0, new Activity() { ActivityId = 0, ActivityName = "Select water consumption..." });
-
-                // Generate SelectList from activity
-               // var selectList = new SelectList(activities, "ActivityId", "ActivityName", selected);
-               // return selectList;
-           // }
-       // }
-
-
-
         // GET: UserActivities
+        [Authorize]
+
         public async Task<IActionResult> Index()
         {
             User user = await GetCurrentUserAsync();
@@ -69,6 +52,8 @@ namespace DripBackendCapstoneNSS.Controllers
         }
 
         // GET: UserActivities/Details/5
+        [Authorize]
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -90,6 +75,8 @@ namespace DripBackendCapstoneNSS.Controllers
         }
 
         // GET: UserActivities/Create
+        [Authorize]
+
         public IActionResult Create()
         {
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name");
@@ -109,7 +96,7 @@ namespace DripBackendCapstoneNSS.Controllers
             {
                 //get current user and set FK for user on user activity to their ID
                 User user = await GetCurrentUserAsync();
-
+                userActivity.User = user;
                 _context.Add(userActivity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -141,9 +128,15 @@ namespace DripBackendCapstoneNSS.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserActivityId,Date,Count,Id,ActivityId")] UserActivity userActivity)
         {
+            //get current user
+            User user = await GetCurrentUserAsync();
+            userActivity.User = user;
+
+
             if (id != userActivity.UserActivityId)
             {
                 return NotFound();
@@ -151,6 +144,8 @@ namespace DripBackendCapstoneNSS.Controllers
 
             if (ModelState.IsValid)
             {
+
+
                 try
                 {
                     _context.Update(userActivity);
@@ -175,6 +170,7 @@ namespace DripBackendCapstoneNSS.Controllers
         }
 
         // GET: UserActivities/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
