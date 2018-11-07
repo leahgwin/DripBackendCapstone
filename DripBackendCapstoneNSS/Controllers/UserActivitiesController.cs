@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Data;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using DripBackendCapstoneNSS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DripBackendCapstoneNSS.Controllers
 {
@@ -52,9 +53,13 @@ namespace DripBackendCapstoneNSS.Controllers
         // GET: UserActivities
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.UserActivity.Include(u => u.Activity).Include(u => u.User);
-            //make instance of view model, then let that be attached to list instead of ^^
-            return View(await applicationDbContext.ToListAsync());
+            User user = await GetCurrentUserAsync();
+            var viewModel = new UserActivityListViewModel();
+
+
+            var userActivities = await _context.UserActivity.Include(u => u.Activity).Include(u => u.User).ToListAsync();
+            viewModel.UserActivities = userActivities;
+            return View(viewModel);
         }
 
         // GET: UserActivities/Details/5
@@ -66,9 +71,10 @@ namespace DripBackendCapstoneNSS.Controllers
             }
 
             var userActivity = await _context.UserActivity
-                .Include(u => u.Activity)
-                .Include(u => u.User)
-                .FirstOrDefaultAsync(m => m.UserActivityId == id);
+                 .Include(u => u.Activity)
+                 .Include(u => u.User)
+                 .FirstOrDefaultAsync(m => m.UserActivityId == id);
+
             if (userActivity == null)
             {
                 return NotFound();
@@ -89,6 +95,7 @@ namespace DripBackendCapstoneNSS.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserActivityId,Date,Count,UserId,ActivityId")] UserActivity userActivity)
         {
