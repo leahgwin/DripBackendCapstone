@@ -23,7 +23,7 @@ namespace DripBackendCapstoneNSS.Models
         //[Display(Name = "Username")]
         //public string UserName { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Neighborhood")]
         public string Neighborhood { get; set; }
 

@@ -10,9 +10,15 @@ namespace DripBackendCapstoneNSS.Models.ViewModels
 {
     public class UserActivityListViewModel
     {
-        public UserActivity Activity { get; set; }
+        public Activity Activity { get; set; }
+        public UserActivity UserActivity { get; set; }
+        public UserActivity Date { get; set; }
+        public UserActivity UserActivityId { get; set; }
+        public int Count { get; set; }
+        public int Liters { get; set; }
         public IEnumerable<UserActivity> UserActivities { get; set; }
-        public UserActivity LiterTotal { get; set; }
+
+        
 
         public UserActivityListViewModel(ApplicationDbContext context, User User)
         {
