@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DripBackendCapstoneNSS.Models.UserActivity>
+﻿@model DripBackendCapstoneNSS.Models.ViewModels.UserActivityListViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add New Water Usage</a>
 </p>
 <table class="table">
     <thead>
@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Activity.Liters)
+                @Html.DisplayNameFor(model => model.UserActivity.LiterTotal)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Activity)
@@ -25,13 +25,13 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.UserActivities) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Activity.Liters)
+                @Html.DisplayFor(modelItem => item.LiterTotal)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Activity.Name)

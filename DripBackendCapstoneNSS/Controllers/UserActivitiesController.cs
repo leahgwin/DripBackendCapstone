@@ -53,6 +53,7 @@ namespace DripBackendCapstoneNSS.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.UserActivity.Include(u => u.Activity).Include(u => u.User);
+            //make instance of view model, then let that be attached to list instead of ^^
             return View(await applicationDbContext.ToListAsync());
         }
 
