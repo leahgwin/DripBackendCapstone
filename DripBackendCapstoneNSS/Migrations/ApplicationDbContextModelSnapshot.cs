@@ -69,8 +69,6 @@ namespace DripBackendCapstoneNSS.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("Neighborhood");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
@@ -107,7 +105,7 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "12651ded-f517-4f9d-9489-ed0ef15bed07", AccessFailedCount = 0, ConcurrencyStamp = "ca7c848b-87a1-4a57-a379-07bf4d9e6885", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, Neighborhood = "Camps Bay", NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEGj9d4Hjl4sE3wC5HDqp35g4C8rGzz5Dpp4qcxdvcBUJATjXeNpkmdSH2zs91AzZ1A==", PhoneNumberConfirmed = false, SecurityStamp = "3bf5249f-c8ff-48e8-bb01-f155e2a92236", TwoFactorEnabled = false, UserId = 0, UserName = "admin" }
+                        new { Id = "1a644fdf-b87b-4d5d-a786-b0932dcbb225", AccessFailedCount = 0, ConcurrencyStamp = "d523e274-d1b5-4c74-a923-414681e8a9f5", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEEOfRq0x3LZpXyR0wBPlr7xpPjl3zB733q57Yd4MZYE3HIeoN7wojIxdIKkeQLm5fA==", PhoneNumberConfirmed = false, SecurityStamp = "101eb73c-81a2-4d81-b447-555c5cbb8352", TwoFactorEnabled = false, UserId = 0, UserName = "admin" }
                     );
                 });
 
@@ -134,9 +132,9 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("UserActivity");
 
                     b.HasData(
-                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 7, 14, 13, 53, 30, DateTimeKind.Local), UserId = "12651ded-f517-4f9d-9489-ed0ef15bed07" },
-                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 7, 14, 13, 53, 33, DateTimeKind.Local), UserId = "12651ded-f517-4f9d-9489-ed0ef15bed07" },
-                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 7, 14, 13, 53, 33, DateTimeKind.Local), UserId = "12651ded-f517-4f9d-9489-ed0ef15bed07" }
+                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 7, 14, 36, 46, 67, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" },
+                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" },
+                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" }
                     );
                 });
 

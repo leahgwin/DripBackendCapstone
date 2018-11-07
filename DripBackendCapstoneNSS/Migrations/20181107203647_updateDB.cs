@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DripBackendCapstoneNSS.Migrations
 {
-    public partial class Initial : Migration
+    public partial class updateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,8 +55,7 @@ namespace DripBackendCapstoneNSS.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false),
-                    Neighborhood = table.Column<string>(nullable: false)
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,23 +218,23 @@ namespace DripBackendCapstoneNSS.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Neighborhood", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "388c803e-2dd9-4188-8a59-a89455022e8b", 0, "f59976cd-70c9-4f58-bd07-bba909676d51", "admin@admin.com", true, false, null, "Camps Bay", "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAEAACcQAAAAEDvkeVBVI6g6CE+x0KkHm8M+AxusP0eDbyXh7lJ59B3rMR1VFCM3T4oeS4APHRa9uw==", null, false, "e6d4c6f5-1843-445a-b518-953078cbbedc", false, 0, "admin" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
+                values: new object[] { "1a644fdf-b87b-4d5d-a786-b0932dcbb225", 0, "d523e274-d1b5-4c74-a923-414681e8a9f5", "admin@admin.com", true, false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAEAACcQAAAAEEOfRq0x3LZpXyR0wBPlr7xpPjl3zB733q57Yd4MZYE3HIeoN7wojIxdIKkeQLm5fA==", null, false, "101eb73c-81a2-4d81-b447-555c5cbb8352", false, 0, "admin" });
 
             migrationBuilder.InsertData(
                 table: "UserActivity",
                 columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "UserId" },
-                values: new object[] { 1, 1, 1, new DateTime(2018, 11, 5, 14, 50, 1, 826, DateTimeKind.Local), "388c803e-2dd9-4188-8a59-a89455022e8b" });
+                values: new object[] { 1, 1, 1, new DateTime(2018, 11, 7, 14, 36, 46, 67, DateTimeKind.Local), "1a644fdf-b87b-4d5d-a786-b0932dcbb225" });
 
             migrationBuilder.InsertData(
                 table: "UserActivity",
                 columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "UserId" },
-                values: new object[] { 2, 4, 3, new DateTime(2018, 11, 5, 14, 50, 1, 835, DateTimeKind.Local), "388c803e-2dd9-4188-8a59-a89455022e8b" });
+                values: new object[] { 2, 4, 3, new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), "1a644fdf-b87b-4d5d-a786-b0932dcbb225" });
 
             migrationBuilder.InsertData(
                 table: "UserActivity",
                 columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "UserId" },
-                values: new object[] { 3, 8, 3, new DateTime(2018, 11, 5, 14, 50, 1, 835, DateTimeKind.Local), "388c803e-2dd9-4188-8a59-a89455022e8b" });
+                values: new object[] { 3, 8, 3, new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), "1a644fdf-b87b-4d5d-a786-b0932dcbb225" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

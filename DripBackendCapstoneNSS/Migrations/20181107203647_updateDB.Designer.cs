@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DripBackendCapstoneNSS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181105205003_Initial")]
-    partial class Initial
+    [Migration("20181107203647_updateDB")]
+    partial class updateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,9 +71,6 @@ namespace DripBackendCapstoneNSS.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("Neighborhood")
-                        .IsRequired();
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
@@ -110,7 +107,7 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "388c803e-2dd9-4188-8a59-a89455022e8b", AccessFailedCount = 0, ConcurrencyStamp = "f59976cd-70c9-4f58-bd07-bba909676d51", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, Neighborhood = "Camps Bay", NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEDvkeVBVI6g6CE+x0KkHm8M+AxusP0eDbyXh7lJ59B3rMR1VFCM3T4oeS4APHRa9uw==", PhoneNumberConfirmed = false, SecurityStamp = "e6d4c6f5-1843-445a-b518-953078cbbedc", TwoFactorEnabled = false, UserId = 0, UserName = "admin" }
+                        new { Id = "1a644fdf-b87b-4d5d-a786-b0932dcbb225", AccessFailedCount = 0, ConcurrencyStamp = "d523e274-d1b5-4c74-a923-414681e8a9f5", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEEOfRq0x3LZpXyR0wBPlr7xpPjl3zB733q57Yd4MZYE3HIeoN7wojIxdIKkeQLm5fA==", PhoneNumberConfirmed = false, SecurityStamp = "101eb73c-81a2-4d81-b447-555c5cbb8352", TwoFactorEnabled = false, UserId = 0, UserName = "admin" }
                     );
                 });
 
@@ -137,9 +134,9 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("UserActivity");
 
                     b.HasData(
-                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 5, 14, 50, 1, 826, DateTimeKind.Local), UserId = "388c803e-2dd9-4188-8a59-a89455022e8b" },
-                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 5, 14, 50, 1, 835, DateTimeKind.Local), UserId = "388c803e-2dd9-4188-8a59-a89455022e8b" },
-                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 5, 14, 50, 1, 835, DateTimeKind.Local), UserId = "388c803e-2dd9-4188-8a59-a89455022e8b" }
+                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 7, 14, 36, 46, 67, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" },
+                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" },
+                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" }
                     );
                 });
 
