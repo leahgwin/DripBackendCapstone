@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.LiterTotal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GetActivity().Name)
+                @Html.DisplayFor(modelItem => item.Activity.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.UserActivityId">Edit</a> |

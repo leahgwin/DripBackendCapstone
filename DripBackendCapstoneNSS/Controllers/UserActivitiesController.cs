@@ -56,10 +56,16 @@ namespace DripBackendCapstoneNSS.Controllers
             User user = await GetCurrentUserAsync();
             var viewModel = new UserActivityListViewModel();
 
-
             var userActivities = await _context.UserActivity.Include(u => u.Activity).Include(u => u.User).ToListAsync();
+            //loop through useractivities with linq statement to call method
+            foreach (UserActivity u in userActivities)
+            {
+                u.SetLiterTotal();
+            }
             viewModel.UserActivities = userActivities;
             return View(viewModel);
+
+
         }
 
         // GET: UserActivities/Details/5

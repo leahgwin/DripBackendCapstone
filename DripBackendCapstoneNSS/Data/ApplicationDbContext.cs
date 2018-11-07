@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using DripBackendCapstoneNSS.Models;
 using Microsoft.AspNetCore.Identity;
 
+
 namespace DripBackendCapstoneNSS.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>

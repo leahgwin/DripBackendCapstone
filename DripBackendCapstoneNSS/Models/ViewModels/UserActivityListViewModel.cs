@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DripBackendCapstoneNSS.Data;
 using DripBackendCapstoneNSS.Models;
 
+
 namespace DripBackendCapstoneNSS.Models.ViewModels
 {
     public class UserActivityListViewModel
@@ -23,6 +24,10 @@ namespace DripBackendCapstoneNSS.Models.ViewModels
         public UserActivityListViewModel(ApplicationDbContext context, User User)
         {
             UserActivities = context.UserActivity.Where(u => u.UserId == User.Id);
+        }
+
+        public UserActivityListViewModel()
+        {
         }
     }
 }
