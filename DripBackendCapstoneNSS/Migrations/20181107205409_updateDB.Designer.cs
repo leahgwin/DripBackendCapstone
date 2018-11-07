@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DripBackendCapstoneNSS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181107203647_updateDB")]
-    partial class updateDB
+    [Migration("20181107205409_updateDB")]
+    partial class UpdateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,14 +87,10 @@ namespace DripBackendCapstoneNSS.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<int>("UserId");
-
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("UserId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -107,7 +103,7 @@ namespace DripBackendCapstoneNSS.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "1a644fdf-b87b-4d5d-a786-b0932dcbb225", AccessFailedCount = 0, ConcurrencyStamp = "d523e274-d1b5-4c74-a923-414681e8a9f5", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEEOfRq0x3LZpXyR0wBPlr7xpPjl3zB733q57Yd4MZYE3HIeoN7wojIxdIKkeQLm5fA==", PhoneNumberConfirmed = false, SecurityStamp = "101eb73c-81a2-4d81-b447-555c5cbb8352", TwoFactorEnabled = false, UserId = 0, UserName = "admin" }
+                        new { Id = "093a0f62-ab71-4939-82fc-57c9074a92ac", AccessFailedCount = 0, ConcurrencyStamp = "915683cf-648a-4273-8470-20bfabbed52a", Email = "admin@admin.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEOPGXH3nbNHzYtZp4LzjhwRu270aM4eza5AZY/xZy2cwKA4Pv3j03HPQ5YEL8JgTVA==", PhoneNumberConfirmed = false, SecurityStamp = "79bf2f35-23cd-4bde-bcea-5ff1ac33623b", TwoFactorEnabled = false, UserName = "admin" }
                     );
                 });
 
@@ -123,20 +119,20 @@ namespace DripBackendCapstoneNSS.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("Id");
 
                     b.HasKey("UserActivityId");
 
                     b.HasIndex("ActivityId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("Id");
 
                     b.ToTable("UserActivity");
 
                     b.HasData(
-                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 7, 14, 36, 46, 67, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" },
-                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" },
-                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), UserId = "1a644fdf-b87b-4d5d-a786-b0932dcbb225" }
+                        new { UserActivityId = 1, ActivityId = 1, Count = 1, Date = new DateTime(2018, 11, 7, 14, 54, 7, 947, DateTimeKind.Local), Id = "093a0f62-ab71-4939-82fc-57c9074a92ac" },
+                        new { UserActivityId = 2, ActivityId = 4, Count = 3, Date = new DateTime(2018, 11, 7, 14, 54, 7, 950, DateTimeKind.Local), Id = "093a0f62-ab71-4939-82fc-57c9074a92ac" },
+                        new { UserActivityId = 3, ActivityId = 8, Count = 3, Date = new DateTime(2018, 11, 7, 14, 54, 7, 950, DateTimeKind.Local), Id = "093a0f62-ab71-4939-82fc-57c9074a92ac" }
                     );
                 });
 
@@ -263,7 +259,7 @@ namespace DripBackendCapstoneNSS.Migrations
 
                     b.HasOne("DripBackendCapstoneNSS.Models.User", "User")
                         .WithMany("UserActivities")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("Id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -46,7 +46,7 @@ namespace DripBackendCapstoneNSS.Data
           new UserActivity()
           {
               UserActivityId = 1,
-              UserId = user.Id,
+              Id = user.Id,
               ActivityId = 1,
               Date = DateTime.Now,
               Count = 1,
@@ -54,7 +54,7 @@ namespace DripBackendCapstoneNSS.Data
           new UserActivity()
           {
               UserActivityId = 2,
-              UserId = user.Id,
+              Id = user.Id,
               ActivityId = 4,
               Date = DateTime.Now,
               Count = 3,
@@ -62,7 +62,7 @@ namespace DripBackendCapstoneNSS.Data
           new UserActivity()
           {
               UserActivityId = 3,
-              UserId = user.Id,
+              Id = user.Id,
               ActivityId = 8,
               Date = DateTime.Now,
               Count = 3,

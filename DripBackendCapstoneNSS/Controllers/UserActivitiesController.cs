@@ -93,7 +93,7 @@ namespace DripBackendCapstoneNSS.Controllers
         public IActionResult Create()
         {
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name");
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id");
+            ViewData["Id"] = new SelectList(_context.User, "Id", "Id");
             return View();
         }
 
@@ -103,7 +103,7 @@ namespace DripBackendCapstoneNSS.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserActivityId,Date,Count,UserId,ActivityId")] UserActivity userActivity)
+        public async Task<IActionResult> Create([Bind("UserActivityId,Date,Count,Id,ActivityId")] UserActivity userActivity)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +115,7 @@ namespace DripBackendCapstoneNSS.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name", userActivity.ActivityId);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userActivity.UserId);
+            ViewData["Id"] = new SelectList(_context.User, "Id", "Id", userActivity.Id);
             return View(userActivity);
         }
 
@@ -133,7 +133,7 @@ namespace DripBackendCapstoneNSS.Controllers
                 return NotFound();
             }
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name", userActivity.ActivityId);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userActivity.UserId);
+            ViewData["Id"] = new SelectList(_context.User, "Id", "Id", userActivity.Id);
             return View(userActivity);
         }
 
@@ -142,7 +142,7 @@ namespace DripBackendCapstoneNSS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserActivityId,Date,Count,UserId,ActivityId")] UserActivity userActivity)
+        public async Task<IActionResult> Edit(int id, [Bind("UserActivityId,Date,Count,Id,ActivityId")] UserActivity userActivity)
         {
             if (id != userActivity.UserActivityId)
             {
@@ -170,7 +170,7 @@ namespace DripBackendCapstoneNSS.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name", userActivity.ActivityId);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userActivity.UserId);
+            ViewData["Id"] = new SelectList(_context.User, "Id", "Id", userActivity.Id);
             return View(userActivity);
         }
 

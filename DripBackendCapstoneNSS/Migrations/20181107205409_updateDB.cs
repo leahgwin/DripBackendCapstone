@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DripBackendCapstoneNSS.Migrations
 {
-    public partial class updateDB : Migration
+    public partial class UpdateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,13 +54,11 @@ namespace DripBackendCapstoneNSS.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.UniqueConstraint("AK_AspNetUsers_UserId", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,7 +175,7 @@ namespace DripBackendCapstoneNSS.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Date = table.Column<DateTime>(nullable: false),
                     Count = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: true),
+                    Id = table.Column<string>(nullable: true),
                     ActivityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -190,8 +188,8 @@ namespace DripBackendCapstoneNSS.Migrations
                         principalColumn: "ActivityId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserActivity_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_UserActivity_AspNetUsers_Id",
+                        column: x => x.Id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -218,23 +216,23 @@ namespace DripBackendCapstoneNSS.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "1a644fdf-b87b-4d5d-a786-b0932dcbb225", 0, "d523e274-d1b5-4c74-a923-414681e8a9f5", "admin@admin.com", true, false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAEAACcQAAAAEEOfRq0x3LZpXyR0wBPlr7xpPjl3zB733q57Yd4MZYE3HIeoN7wojIxdIKkeQLm5fA==", null, false, "101eb73c-81a2-4d81-b447-555c5cbb8352", false, 0, "admin" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "093a0f62-ab71-4939-82fc-57c9074a92ac", 0, "915683cf-648a-4273-8470-20bfabbed52a", "admin@admin.com", true, false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAEAACcQAAAAEOPGXH3nbNHzYtZp4LzjhwRu270aM4eza5AZY/xZy2cwKA4Pv3j03HPQ5YEL8JgTVA==", null, false, "79bf2f35-23cd-4bde-bcea-5ff1ac33623b", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "UserActivity",
-                columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "UserId" },
-                values: new object[] { 1, 1, 1, new DateTime(2018, 11, 7, 14, 36, 46, 67, DateTimeKind.Local), "1a644fdf-b87b-4d5d-a786-b0932dcbb225" });
+                columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "Id" },
+                values: new object[] { 1, 1, 1, new DateTime(2018, 11, 7, 14, 54, 7, 947, DateTimeKind.Local), "093a0f62-ab71-4939-82fc-57c9074a92ac" });
 
             migrationBuilder.InsertData(
                 table: "UserActivity",
-                columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "UserId" },
-                values: new object[] { 2, 4, 3, new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), "1a644fdf-b87b-4d5d-a786-b0932dcbb225" });
+                columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "Id" },
+                values: new object[] { 2, 4, 3, new DateTime(2018, 11, 7, 14, 54, 7, 950, DateTimeKind.Local), "093a0f62-ab71-4939-82fc-57c9074a92ac" });
 
             migrationBuilder.InsertData(
                 table: "UserActivity",
-                columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "UserId" },
-                values: new object[] { 3, 8, 3, new DateTime(2018, 11, 7, 14, 36, 46, 71, DateTimeKind.Local), "1a644fdf-b87b-4d5d-a786-b0932dcbb225" });
+                columns: new[] { "UserActivityId", "ActivityId", "Count", "Date", "Id" },
+                values: new object[] { 3, 8, 3, new DateTime(2018, 11, 7, 14, 54, 7, 950, DateTimeKind.Local), "093a0f62-ab71-4939-82fc-57c9074a92ac" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -281,9 +279,9 @@ namespace DripBackendCapstoneNSS.Migrations
                 column: "ActivityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserActivity_UserId",
+                name: "IX_UserActivity_Id",
                 table: "UserActivity",
-                column: "UserId");
+                column: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

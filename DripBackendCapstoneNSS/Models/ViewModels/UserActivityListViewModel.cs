@@ -23,7 +23,7 @@ namespace DripBackendCapstoneNSS.Models.ViewModels
 
         public UserActivityListViewModel(ApplicationDbContext context, User User)
         {
-            UserActivities = context.UserActivity.Where(u => u.UserId == User.Id);
+            UserActivities = context.UserActivity.Where(u => u.Id == User.Id);
         }
 
         public UserActivityListViewModel()
