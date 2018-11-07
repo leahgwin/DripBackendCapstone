@@ -33,10 +33,11 @@ namespace DripBackendCapstoneNSS.Models
         [NotMapped]
         public int LiterTotal { get; set; }
 
-        //constructor to do the multiplication for me
-        public UserActivity()
+        //method to do the multiplication of liters and count
+        public int SetLiterTotal()
         {
-            this.LiterTotal = this.Count * this.Activity.Liters;
+            LiterTotal = Count * Activity.Liters;
+            return LiterTotal;
         }
     }
 }
