@@ -9,6 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using DripBackendCapstoneNSS.Data;
 using DripBackendCapstoneNSS.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using DripBackendCapstoneNSS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DripBackendCapstoneNSS.Controllers
 {
@@ -27,15 +31,29 @@ namespace DripBackendCapstoneNSS.Controllers
 
         private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-
         // GET: UserActivities
+        [Authorize]
+
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.UserActivity.Include(u => u.Activity).Include(u => u.User);
-            return View(await applicationDbContext.ToListAsync());
+            User user = await GetCurrentUserAsync();
+            var viewModel = new UserActivityListViewModel();
+
+            var userActivities = await _context.UserActivity.Include(u => u.Activity).Include(u => u.User).ToListAsync();
+            //loop through useractivities with linq statement to call method
+            foreach (UserActivity u in userActivities)
+            {
+                u.SetLiterTotal();
+            }
+            viewModel.UserActivities = userActivities;
+            return View(viewModel);
+
+
         }
 
         // GET: UserActivities/Details/5
+        [Authorize]
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,9 +62,10 @@ namespace DripBackendCapstoneNSS.Controllers
             }
 
             var userActivity = await _context.UserActivity
-                .Include(u => u.Activity)
-                .Include(u => u.User)
-                .FirstOrDefaultAsync(m => m.UserActivityId == id);
+                 .Include(u => u.Activity)
+                 .Include(u => u.User)
+                 .FirstOrDefaultAsync(m => m.UserActivityId == id);
+
             if (userActivity == null)
             {
                 return NotFound();
@@ -56,10 +75,12 @@ namespace DripBackendCapstoneNSS.Controllers
         }
 
         // GET: UserActivities/Create
+        [Authorize]
+
         public IActionResult Create()
         {
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name");
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id");
+            ViewData["Id"] = new SelectList(_context.User, "Id", "Id");
             return View();
         }
 
@@ -67,17 +88,21 @@ namespace DripBackendCapstoneNSS.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserActivityId,Date,Count,UserId,ActivityId")] UserActivity userActivity)
+        public async Task<IActionResult> Create([Bind("UserActivityId,Date,Count,Id,ActivityId")] UserActivity userActivity)
         {
             if (ModelState.IsValid)
             {
+                //get current user and set FK for user on user activity to their ID
+                User user = await GetCurrentUserAsync();
+                userActivity.User = user;
                 _context.Add(userActivity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name", userActivity.ActivityId);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userActivity.UserId);
+            ViewData["Id"] = new SelectList(_context.User, "Id", "Id", userActivity.Id);
             return View(userActivity);
         }
 
@@ -95,7 +120,7 @@ namespace DripBackendCapstoneNSS.Controllers
                 return NotFound();
             }
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name", userActivity.ActivityId);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userActivity.UserId);
+            ViewData["Id"] = new SelectList(_context.User, "Id", "Id", userActivity.Id);
             return View(userActivity);
         }
 
@@ -103,9 +128,15 @@ namespace DripBackendCapstoneNSS.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserActivityId,Date,Count,UserId,ActivityId")] UserActivity userActivity)
+        public async Task<IActionResult> Edit(int id, [Bind("UserActivityId,Date,Count,Id,ActivityId")] UserActivity userActivity)
         {
+            //get current user
+            User user = await GetCurrentUserAsync();
+            userActivity.User = user;
+
+
             if (id != userActivity.UserActivityId)
             {
                 return NotFound();
@@ -113,6 +144,8 @@ namespace DripBackendCapstoneNSS.Controllers
 
             if (ModelState.IsValid)
             {
+
+
                 try
                 {
                     _context.Update(userActivity);
@@ -132,11 +165,12 @@ namespace DripBackendCapstoneNSS.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ActivityId"] = new SelectList(_context.Activity, "ActivityId", "Name", userActivity.ActivityId);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Id", userActivity.UserId);
+            ViewData["Id"] = new SelectList(_context.User, "Id", "Id", userActivity.Id);
             return View(userActivity);
         }
 
         // GET: UserActivities/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using DripBackendCapstoneNSS.Models;
 using Microsoft.AspNetCore.Identity;
 
+
 namespace DripBackendCapstoneNSS.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
@@ -32,7 +33,6 @@ namespace DripBackendCapstoneNSS.Data
                 Email = "admin@admin.com",
                 NormalizedEmail = "ADMIN@ADMIN.COM",
                 EmailConfirmed = true,
-                Neighborhood = "Camps Bay",
                 LockoutEnabled = false,
                 SecurityStamp = Guid.NewGuid().ToString("D")
             };
@@ -46,7 +46,7 @@ namespace DripBackendCapstoneNSS.Data
           new UserActivity()
           {
               UserActivityId = 1,
-              UserId = user.Id,
+              Id = user.Id,
               ActivityId = 1,
               Date = DateTime.Now,
               Count = 1,
@@ -54,7 +54,7 @@ namespace DripBackendCapstoneNSS.Data
           new UserActivity()
           {
               UserActivityId = 2,
-              UserId = user.Id,
+              Id = user.Id,
               ActivityId = 4,
               Date = DateTime.Now,
               Count = 3,
@@ -62,7 +62,7 @@ namespace DripBackendCapstoneNSS.Data
           new UserActivity()
           {
               UserActivityId = 3,
-              UserId = user.Id,
+              Id = user.Id,
               ActivityId = 8,
               Date = DateTime.Now,
               Count = 3,

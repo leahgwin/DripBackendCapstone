@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,10 +24,20 @@ namespace DripBackendCapstoneNSS.Models
 
         public User User { get; set; }
 
-        public string UserId { get; set; }
+        public string Id { get; set; }
 
         public Activity Activity { get; set; }
 
         public int ActivityId { get; set; }
+
+        [NotMapped]
+        public int LiterTotal { get; set; }
+
+        //method to do the multiplication of liters and count
+        public int SetLiterTotal()
+        {
+            LiterTotal = Count * Activity.Liters;
+            return LiterTotal;
+        }
     }
 }
