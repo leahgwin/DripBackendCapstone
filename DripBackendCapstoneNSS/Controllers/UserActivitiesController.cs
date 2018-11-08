@@ -43,6 +43,7 @@ namespace DripBackendCapstoneNSS.Controllers
                 .Where(u => u.User.Id == user.Id)
                 .Include(u => u.Activity)
                 .Include(u => u.User)
+                .OrderByDescending(u => u.Date)
                 .ToListAsync();
             //loop through useractivities with linq statement to call multiplication method
             foreach (UserActivity u in userActivities)
