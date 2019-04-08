@@ -1,1 +1,5 @@
-# DripBackendCapstone
+# Drip: Backend C#, .NET Capstone
+
+Cape Town currently has 420 days until their dams (water reserves) are at 10%. They are currently slated to be the first developed city to run out of water, which is a crisis the entire world should be paying attention to closely. Many residents have worked tirelessly to save as much water as they can to avoid what the locals are calling Day Zero. Level 5 water restrictions are in effect in Cape Town since October, which requires all residents to drop their daily use to 70 litres pp/day or less. To give you an idea of how much 70 liters is, if you did one medium load of laundry, you will have reached your max water usage for the day, and that would leave you with no water for necessities like brushing teeth, drinking, cooking, dishes, pets, bathing, and flushing the toilet. 
+
+Therefore, I created an application that helps the residents and visitors of Cape Town stay aware of their limited water usage and also challenge each other in a competitive way to conserve water in order to keep pushing back Day Zero. 
